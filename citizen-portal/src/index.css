@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+
+.leaflet-container {
+  font-family: 'Inter', sans-serif;
+  border-radius: 0.75rem;
+  z-index: 10;
+}
+
+/* Glassmorphism */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glassmorphism {
+  background: rgba(30, 41, 59, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Accessibility: Large Text Mode */
+.text-zoom-large {
+  font-size: 1.15rem !important;
+}
+.text-zoom-large h1 {
+  font-size: 2.25rem !important;
+}
+.text-zoom-large h2 {
+  font-size: 1.75rem !important;
+}
+.text-zoom-large h3, .text-zoom-large h4 {
+  font-size: 1.45rem !important;
+}
+.text-zoom-large p, 
+.text-zoom-large span, 
+.text-zoom-large select, 
+.text-zoom-large input, 
+.text-zoom-large textarea, 
+.text-zoom-large button, 
+.text-zoom-large a {
+  font-size: 1.05rem !important;
+}
+
+/* Accessibility: High Contrast Mode */
+.high-contrast {
+  filter: contrast(1.3) saturate(1.15);
+}
+.high-contrast body {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+.high-contrast .bg-white {
+  background-color: #121212 !important;
+  color: #FFFFFF !important;
+}
+.high-contrast .bg-slate-50 {
+  background-color: #1A1A1A !important;
+}
+.high-contrast .border, 
+.high-contrast .border-slate-200, 
+.high-contrast .border-slate-100 {
+  border-color: #FFFFFF !important;
+}
+.high-contrast text, 
+.high-contrast span, 
+.high-contrast p, 
+.high-contrast h1, 
+.high-contrast h2, 
+.high-contrast h3, 
+.high-contrast h4,
+.high-contrast a,
+.high-contrast label,
+.high-contrast button {
+  color: #FFFFFF !important;
+}
+.high-contrast .text-slate-500, 
+.high-contrast .text-slate-400 {
+  color: #E2E8F0 !important;
+}
+.high-contrast .bg-primary, 
+.high-contrast .bg-blue-600 {
+  background-color: #0000FF !important;
+  color: #FFFFFF !important;
+}
+.high-contrast .bg-success, 
+.high-contrast .bg-emerald-600 {
+  background-color: #008000 !important;
+  color: #FFFFFF !important;
+}
+.high-contrast .bg-warning {
+  background-color: #FF8C00 !important;
+  color: #FFFFFF !important;
+}
+.high-contrast .bg-error {
+  background-color: #FF0000 !important;
+  color: #FFFFFF !important;
+}

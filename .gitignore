@@ -1,0 +1,30 @@
+# Dependency folders
+node_modules/
+jspm_packages/
+web_modules/
+
+# Local env keys
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Production build outputs
+dist/
+build/
+out/
+
+# Database fallbacks & uploads
+backend/data/db.json
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

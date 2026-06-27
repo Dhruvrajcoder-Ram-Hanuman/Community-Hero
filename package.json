@@ -1,0 +1,10 @@
+{
+  "name": "community-hero-workspace",
+  "version": "1.0.0",
+  "description": "Root workspace configuration for Community Hero platform",
+  "scripts": {
+    "dev-backend": "npm run dev --prefix backend",
+    "dev-citizen": "npm run dev --prefix frontend-citizen",
+    "dev-official": "npm run dev --prefix frontend-official"
+  }
+}
