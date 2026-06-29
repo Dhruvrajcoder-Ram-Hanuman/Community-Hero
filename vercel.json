@@ -1,5 +1,5 @@
 {
-  "installCommand": "cd backend && npm install && cd ../citizen-portal && npm install",
+  "installCommand": "cd backend && npm install && cd ../citizen-portal && npm install --legacy-peer-deps",
   "buildCommand": "cd citizen-portal && npm run build",
   "outputDirectory": "citizen-portal/dist",
   "functions": {
