@@ -125,7 +125,7 @@ function HomePage({ language }) {
       </section>
 
       {/* Dynamic Statistics Cards */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm">
           <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t.statsReports}</span>
           <p className="text-2xl font-black text-slate-900 dark:text-white mt-1">{stats.total || 12}</p>
@@ -137,35 +137,6 @@ function HomePage({ language }) {
         <div className="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm">
           <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t.statsRate}</span>
           <p className="text-2xl font-black text-primary-light mt-1">{stats.total > 0 ? Math.round((stats.resolved / stats.total) * 100) : 75}%</p>
-        </div>
-        <div className="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/50 shadow-sm">
-          <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t.statsActive}</span>
-          <p className="text-2xl font-black text-warning mt-1">12 Active</p>
-        </div>
-      </section>
-
-      {/* Narrative Impact Dashboard Widget */}
-      <section className="bg-gradient-to-br from-emerald-500/5 to-blue-500/5 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
-        <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5 mb-4">
-          <Heart className="w-4.5 h-4.5 text-emerald-500 fill-current" />
-          <span>Our Community Impact Storyboard</span>
-        </h3>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-semibold">
-          <div className="bg-white dark:bg-slate-850 p-4.5 rounded-xl border border-slate-150/60 dark:border-slate-800/80 shadow-sm flex items-center gap-4">
-            <span className="text-3xl">🛣️</span>
-            <div>
-              <p className="text-slate-900 dark:text-white font-extrabold text-sm">500+ Potholes Mended</p>
-              <p className="text-slate-500 mt-1">Estimated <strong className="text-emerald-500">1,200 accidents prevented</strong> city-wide.</p>
-            </div>
-          </div>
-          <div className="bg-white dark:bg-slate-850 p-4.5 rounded-xl border border-slate-150/60 dark:border-slate-800/80 shadow-sm flex items-center gap-4">
-            <span className="text-3xl">🚰</span>
-            <div>
-              <p className="text-slate-900 dark:text-white font-extrabold text-sm">200+ Water Leaks Secured</p>
-              <p className="text-slate-500 mt-1">Conserved an estimated <strong className="text-primary-light">18 lakh liters of drinking water</strong>.</p>
-            </div>
-          </div>
         </div>
       </section>
 

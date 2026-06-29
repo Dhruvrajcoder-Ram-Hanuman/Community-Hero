@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Home, Plus, Map, User, Sun, Moon, Bell, Languages } from 'lucide-react';
+import { Home, Plus, Map, User, Sun, Moon, Bell, Languages, Award } from 'lucide-react';
 import api from './services/api';
 
 import HomePage from './pages/Home';
@@ -8,6 +8,7 @@ import ReportIssuePage from './pages/ReportIssue';
 import IssueDetailsPage from './pages/IssueDetails';
 import MapPage from './pages/MapPage';
 import ProfilePage from './pages/Profile';
+import LeaderboardPage from './pages/Leaderboard';
 import AccessibilityBar from './components/ui/AccessibilityBar';
 import Chatbot from './components/ui/Chatbot';
 
@@ -19,6 +20,7 @@ export const translations = {
     navReport: "Submit Issue",
     navMap: "Interactive Map",
     navProfile: "My Account",
+    navLeaderboard: "Leaderboard",
     searchPlaceholder: "Search roads, garbage, location...",
     statsReports: "Reports Mapped",
     statsResolved: "Resolved Cases",
@@ -48,6 +50,7 @@ export const translations = {
     navReport: "समस्या दर्ज करें",
     navMap: "सक्रिय नक्शा",
     navProfile: "मेरा खाता",
+    navLeaderboard: "लीडरबोर्ड",
     searchPlaceholder: "सड़क, कचरा, स्थान खोजें...",
     statsReports: "कुल शिकायतें",
     statsResolved: "सुलझाई गई",
@@ -77,6 +80,7 @@ export const translations = {
     navReport: "ವರದಿ ಮಾಡಿ",
     navMap: "ನಕ್ಷೆ",
     navProfile: "ನನ್ನ ಪ್ರೊಫೈಲ್",
+    navLeaderboard: "ಲೀಡರ್ಬೋರ್ಡ್",
     searchPlaceholder: "ರಸ್ತೆ, ಕಸ, ಸ್ಥಳ ಹುಡುಕಿ...",
     statsReports: "ಒಟ್ಟು ವರದಿಗಳು",
     statsResolved: "ಪರಿಹರಿಸಲಾಗಿದೆ",
@@ -148,9 +152,10 @@ function MainLayout({ children, darkMode, setDarkMode, language, setLanguage, to
 
           {/* Nav tabs (Desktop) */}
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className={`font-semibold text-xs uppercase tracking-wider transition-colors ${location.pathname === '/' ? 'text-primary' : 'text-slate-650 dark:text-slate-350 hover:text-primary'}`}>{t.navHome}</Link>
+            <Link to="/" className={`font-semibold text-xs uppercase tracking-wider transition-colors ${location.pathname === '/' ? 'text-primary' : 'text-slate-650 dark:text-slate-355 hover:text-primary'}`}>{t.navHome}</Link>
             <Link to="/report" className={`font-semibold text-xs uppercase tracking-wider transition-colors ${location.pathname === '/report' ? 'text-primary' : 'text-slate-650 dark:text-slate-355 hover:text-primary'}`}>{t.navReport}</Link>
             <Link to="/map" className={`font-semibold text-xs uppercase tracking-wider transition-colors ${location.pathname === '/map' ? 'text-primary' : 'text-slate-650 dark:text-slate-355 hover:text-primary'}`}>{t.navMap}</Link>
+            <Link to="/leaderboard" className={`font-semibold text-xs uppercase tracking-wider transition-colors ${location.pathname === '/leaderboard' ? 'text-primary' : 'text-slate-650 dark:text-slate-355 hover:text-primary'}`}>{t.navLeaderboard}</Link>
             <Link to="/profile" className={`font-semibold text-xs uppercase tracking-wider transition-colors ${location.pathname === '/profile' ? 'text-primary' : 'text-slate-650 dark:text-slate-355 hover:text-primary'}`}>{t.navProfile}</Link>
           </nav>
 
@@ -234,6 +239,10 @@ function MainLayout({ children, darkMode, setDarkMode, language, setLanguage, to
           <Map className="w-5 h-5" />
           <span>Map</span>
         </Link>
+        <Link to="/leaderboard" className={`flex flex-col items-center gap-0.5 ${location.pathname === '/leaderboard' ? 'text-primary' : 'text-slate-500 dark:text-slate-400'}`}>
+          <Award className="w-5 h-5" />
+          <span>Leaderboard</span>
+        </Link>
         <Link to="/profile" className={`flex flex-col items-center gap-0.5 ${location.pathname === '/profile' ? 'text-primary' : 'text-slate-500 dark:text-slate-400'}`}>
           <User className="w-5 h-5" />
           <span>Profile</span>
@@ -291,6 +300,7 @@ function App() {
           <Route path="/report" element={<ReportIssuePage language={language} showNotification={showNotification} />} />
           <Route path="/issue/:id" element={<IssueDetailsPage language={language} />} />
           <Route path="/map" element={<MapPage language={language} />} />
+          <Route path="/leaderboard" element={<LeaderboardPage language={language} />} />
           <Route path="/profile" element={<ProfilePage language={language} />} />
         </Routes>
       </MainLayout>
