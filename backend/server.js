@@ -22,6 +22,28 @@ app.use(express.json());
 const UPLOADS_DIR = path.join(__dirname, 'uploads');
 app.use('/uploads', express.static(UPLOADS_DIR));
 
+// Initialize DB on startup (for both Vercel and local)
+let dbInitialized = false;
+async function ensureDB() {
+  if (!dbInitialized) {
+    dbInitialized = true;
+    try {
+      await initDB();
+      const models = getModels();
+      await seedDatabase(models);
+      console.log('Database initialized successfully.');
+    } catch (error) {
+      console.error('Server failed to start database connection:', error);
+    }
+  }
+}
+
+// Middleware to ensure DB is ready before handling requests
+app.use(async (req, res, next) => {
+  await ensureDB();
+  next();
+});
+
 // ----------------------------------------------------
 // ROUTING MIDDLEWARES
 // ----------------------------------------------------
@@ -179,15 +201,14 @@ async function seedDatabase(models) {
 // Bind Global Error Middleware
 app.use(errorMiddleware);
 
-// Launch Listener
-app.listen(PORT, async () => {
-  console.log(`Server launching on port ${PORT}...`);
-  try {
-    await initDB();
-    const models = getModels();
-    await seedDatabase(models);
+// Launch Listener (only in local dev, not on Vercel)
+if (!process.env.VERCEL) {
+  app.listen(PORT, async () => {
+    console.log(`Server launching on port ${PORT}...`);
+    await ensureDB();
     console.log(`Modular API Backend listening at http://localhost:${PORT}`);
-  } catch (error) {
-    console.error('Server failed to start database connection:', error);
-  }
-});
+  });
+}
+
+// Export for Vercel serverless
+module.exports = app;

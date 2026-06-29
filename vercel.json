@@ -1,21 +1,14 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "citizen-portal/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+  "installCommand": "cd backend && npm install && cd ../citizen-portal && npm install",
+  "buildCommand": "cd citizen-portal && npm run build",
+  "outputDirectory": "citizen-portal/dist",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "backend/**"
     }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "backend/server.js" },
-    { "src": "/uploads/(.*)", "dest": "backend/server.js" },
-    { "src": "/(.*)", "dest": "citizen-portal/$1" }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/uploads/(.*)", "destination": "/api" }
   ]
 }
