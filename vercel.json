@@ -1,7 +1,7 @@
 {
-  "installCommand": "cd backend && npm install && cd ../citizen-portal && npm install --legacy-peer-deps",
-  "buildCommand": "cd citizen-portal && npm run build",
-  "outputDirectory": "citizen-portal/dist",
+  "installCommand": "cd backend && npm install && cd ../citizen-portal && npm install --legacy-peer-deps && cd ../official-portal && npm install --legacy-peer-deps",
+  "buildCommand": "cd citizen-portal && npm run build && cd ../official-portal && npm run build && cd .. && mkdir -p output && cp -r citizen-portal/dist/* output/ && mkdir -p output/official && cp -r official-portal/dist/* output/official/",
+  "outputDirectory": "output",
   "functions": {
     "api/index.js": {
       "includeFiles": "backend/**"
@@ -9,6 +9,8 @@
   },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api" },
-    { "source": "/uploads/(.*)", "destination": "/api" }
+    { "source": "/uploads/(.*)", "destination": "/api" },
+    { "source": "/official/(.*)", "destination": "/official/index.html" },
+    { "source": "/((?!official/).*)", "destination": "/index.html" }
   ]
 }
